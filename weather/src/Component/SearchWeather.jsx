@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from "react";
  import axios from 'axios'
 const SearchWeather = () => {
   const [search, setSearch] = useState("london");
@@ -9,7 +9,7 @@ const SearchWeather = () => {
     const fetchWeather = () => {
       // let temp=0;
       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=f293878f6395a4d11d094395c659793b`).then ((response)=> {
-        console.log(response.data)
+        // console.log(response.data)
         if(componentMounted){
         setData({
           temp:(response.data.main.temp- 273.15).toFixed(2),
@@ -43,7 +43,7 @@ let d  =  new Date();
 let date = d.getDate();
 let year  = d.getFullYear();
 let month = d.toLocaleString("default",{month:'long'});
-// let day = d.toLocaleString("default", {weakday:'long'});
+let day = d.toLocaleString("default", {weekday:'long'});
 
 //Time
 let time  =  d.toLocaleString([],{
@@ -91,7 +91,7 @@ const handleSubmit = (event) =>{
                 <div className="bg-dark bg-opacity-50 py-3">
                 <h2 className="card-title">{data.name}</h2>
                 <p className="card-text lead">
-                 {month} {date}, {year}
+                 {day} {month} {date}, {year}
                 <br></br>
                 {time}
                 </p>
